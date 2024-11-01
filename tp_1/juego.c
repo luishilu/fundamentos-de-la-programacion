@@ -38,6 +38,8 @@ void pedir_movimiento(char* accion){
     scanf(" %c", accion);
 }
 
+//pre: -
+//post: devuelve true si la tecla que ingresó el usuario es una acción válida, false en caso contrario.
 bool es_accion_valida(char accion){
    return(accion == ARRIBA || accion == ABAJO || accion == DERECHA || accion == IZQUIERDA || accion == MOPA);
 }

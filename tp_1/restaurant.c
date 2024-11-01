@@ -325,33 +325,47 @@ bool puede_soltar_mopa(juego_t* juego){
     return puede_soltar;
 }
 
-//pre -
-//post: devuelve el número de la posición de la mopa en el arreglo de herramientas.
-int hallar_mopa(juego_t *juego){
-    int posicion_mopa = -1;
-    for(int i = 0; i < juego->cantidad_herramientas; i++) {
-        if (juego->herramientas[i].tipo == MOPA)
-            posicion_mopa = i;
+// pre: -
+// post: elimina la mopa del vector de herramientas.
+void eliminar_mopa(juego_t* juego){
+    for(int i = 0; i < juego->cantidad_herramientas; i++){
+        if(juego->herramientas[i].tipo == MOPA){
+            for (int j = i; j < juego->cantidad_herramientas - 1; j++) {
+                juego->herramientas[j] = juego->herramientas[j + 1]; 
+            }
+            juego->cantidad_herramientas--; 
+            i--; 
+        }
     }
-    return posicion_mopa;
 }
 
+// pre: -
+// post: agrega la mopa al vector de herramientas y aumenta su tope.
+void agregar_mopa(juego_t* juego){
+    if(juego->cantidad_herramientas < MAX_HERRAMIENTAS){
+        juego->herramientas[juego->cantidad_herramientas].tipo = MOPA;
+        juego->herramientas[juego->cantidad_herramientas].posicion.fil = juego->mozo.posicion.fil;
+        juego->herramientas[juego->cantidad_herramientas].posicion.col = juego->mozo.posicion.col;
+        juego->cantidad_herramientas++;
+    }
+}
 
 //pre: la mopa debe haber sido inicializada.
 //post: mientras se ubique en la mopa, si el usuario ingresa la constante MOPA y no tiene ninguna, procede a tenerla, si ingresa tal constante
 //pero ya la tenía, la suelta mientras sea posible y en ambos casos se actualizan los movimientos en juego_t.
 void accion_mopa(juego_t* juego){
-    int posicion_mopa = hallar_mopa(juego);
-
     if(puede_agarrar_mopa(juego)){
         juego->mozo.tiene_mopa = true;
-
+        eliminar_mopa(juego);
     } else if(puede_soltar_mopa(juego)){
-        juego->herramientas[posicion_mopa].posicion.fil = juego->mozo.posicion.fil;
-        juego->herramientas[posicion_mopa].posicion.col = juego->mozo.posicion.col;
         juego->mozo.tiene_mopa = false;
+        agregar_mopa(juego);
     }
-} 
+}
+
+
+
+
 
 //pre-
 //post: devuelve true si el movimiento ingresado es una de las acciones del juego predeterminadas.
@@ -365,6 +379,8 @@ void inicializar_juego(juego_t *juego){
     juego->movimientos = 0;
     juego->dinero = 0;
     juego->cantidad_mesas = 0;
+    juego->cocina.cantidad_listos = 0;
+    juego->cocina.cantidad_preparacion = 0;
     
     inicializar_mapa(mapa);
     inicializar_mesa_de_4(juego, mapa);
@@ -410,15 +426,6 @@ void colocar_mesas(char mapa[MAX_FILAS][MAX_COLUMNAS], juego_t juego) {
 void colocar_herramientas(char mapa[MAX_FILAS][MAX_COLUMNAS], juego_t* juego) {
     for (int i = 0; i < juego->cantidad_herramientas; i++) {
         mapa[juego->herramientas[i].posicion.fil][juego->herramientas[i].posicion.col] = juego->herramientas[i].tipo;
-        
-        if (juego->mozo.tiene_mopa && juego->herramientas[i].tipo == MOPA) {
-            mapa[juego->herramientas[i].posicion.fil][juego->herramientas[i].posicion.col] = VACIO; 
-            for (int j = i; j < juego->cantidad_herramientas - 1; j++) {
-                juego->herramientas[j] = juego->herramientas[j + 1]; 
-            }
-            juego->cantidad_herramientas--; 
-            i--; 
-        }
      }
 }
 
