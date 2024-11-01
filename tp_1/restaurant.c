@@ -363,17 +363,6 @@ void accion_mopa(juego_t* juego){
     }
 }
 
-
-
-
-
-//pre-
-//post: devuelve true si el movimiento ingresado es una de las acciones del juego predeterminadas.
-bool es_movimiento_valido(char accion){
-    return(accion == ARRIBA || accion == ABAJO || accion == DERECHA 
-        || accion == IZQUIERDA || accion == MOPA);
-}
-
 void inicializar_juego(juego_t *juego){
     char mapa[MAX_FILAS][MAX_COLUMNAS];
     juego->movimientos = 0;
