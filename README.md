@@ -8,5 +8,5 @@ llevarlos a la mesa correspondiente. En el medio, el mozo deberá tener cuidado 
 necesario, y deberá estar atento de matar a las cucarachas que puedan aparecer para que no moleste a sus comensales.
 
 # introducción al lenguaje c
-tp1: inicialización de juego (vectores, structs, punteros).
+tp1: inicialización de juego (vectores, structs, punteros). 
 tp2: expansión de la funcionalidad del juego (interacción, manejo memoria de dinámica).
