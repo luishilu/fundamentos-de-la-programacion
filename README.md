@@ -1,5 +1,5 @@
 # fundamentos-de-la-programacion
-trabajos prácticos || fundamentos de la programación, méndez - fiuba
+trabajos prácticos || fundamentos de la programación, méndez - fiuba - 2c 2024
 
 El juego consiste en un día en el restaurant. Los comensales van llegando y se sentarán en las mesas disponibles,
 el mozo debe acercarse a cada mesa para tomar los pedidos de las mismas, y llevar esos pedidos hasta la cocina para
