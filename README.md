@@ -7,6 +7,6 @@ que se preparen. Luego de que haya pasado tiempo de preparación de cada pedido,
 llevarlos a la mesa correspondiente. En el medio, el mozo deberá tener cuidado con los charcos, limpiándolos de ser
 necesario, y deberá estar atento de matar a las cucarachas que puedan aparecer para que no moleste a sus comensales.
 
-# Introducción al lenguaje c
+# introducción al lenguaje c
 TP1: inicialización de juego (vectores, structs, punteros).<br>
 TP2: expansión de la funcionalidad del juego (interacción, manejo memoria de dinámica).
